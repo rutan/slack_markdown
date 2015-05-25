@@ -28,7 +28,7 @@ module SlackMarkdown
         end
       end
 
-      CODE_PATTERN = /(?<=^|\W)`(.+)`(?=\W|$)/
+      CODE_PATTERN = /(?<=^|\W)`(.+?)`(?=\W|$)/
     end
   end
 end

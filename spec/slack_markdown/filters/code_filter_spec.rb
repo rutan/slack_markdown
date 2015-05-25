@@ -11,4 +11,9 @@ describe SlackMarkdown::Filters::CodeFilter do
     let(:text) { '`hoge`' }
     it { should eq '<code>hoge</code>' }
   end
+
+  context '`hoge` fuga `piyo`' do
+    let(:text) { '`hoge` fuga `piyo`' }
+    it { should eq '<code>hoge</code> fuga <code>piyo</code>' }
+  end
 end
