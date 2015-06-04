@@ -13,7 +13,7 @@ module SlackMarkdown
           content = node.to_html
           next if has_ancestor?(node, ignored_ancestor_tags)
           next unless content.include?('&gt;&gt;&gt;')
-          html = quote_filter(content)
+          html = multiple_quote_filter(content)
           next if html == content
           node.replace(html)
         end
@@ -22,8 +22,8 @@ module SlackMarkdown
 
       private
 
-      def quote_filter(text)
-        lines = text.split(/^&gt;&gt;&gt;/, 2)
+      def multiple_quote_filter(text)
+        lines = text.split(/^&gt;&gt;&gt;(?:\s|\n)*/, 2)
         if lines.size < 2
           text
         else
