@@ -4,10 +4,10 @@ require 'spec_helper'
 describe SlackMarkdown::Filters::EmojiFilter do
   subject do
     context = {
-      asset_root: "/assets",
+      asset_root: '/assets',
       original_emoji_set: {
-        'ru_shalm' => 'http://toripota.com/img/ru_shalm.png'
-      }
+        'ru_shalm' => 'http://toripota.com/img/ru_shalm.png',
+      },
     }
     filter = SlackMarkdown::Filters::EmojiFilter.new(text, context)
     filter.call.to_s

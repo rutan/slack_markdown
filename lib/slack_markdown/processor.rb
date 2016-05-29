@@ -33,7 +33,7 @@ module SlackMarkdown
     end
 
     def call(src_text, context = {}, result = nil)
-      HTML::Pipeline.new(self.filters, self.context).call(src_text, context, result)
+      HTML::Pipeline.new(filters, self.context).call(src_text, context, result)
     end
   end
 end

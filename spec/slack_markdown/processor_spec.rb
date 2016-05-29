@@ -6,30 +6,22 @@ describe SlackMarkdown::Processor do
     context = {
       asset_root: '/assets',
       original_emoji_set: {
-        'ru_shalm' => 'http://toripota.com/img/ru_shalm.png'
+        'ru_shalm' => 'http://toripota.com/img/ru_shalm.png',
       },
-      on_slack_user_id: -> (uid) {
-        if uid == 'U12345'
-          { text: 'ru_shalm', url: '/@ru_shalm' }
-        else
-          nil
-        end
-      },
-      on_slack_channel_id: -> (uid) {
-        if uid == 'U12345'
-          { text: 'ru_shalm', url: 'http://toripota.com' }
-        else
-          nil
-        end
-      },
-      cushion_link: 'http://localhost/?url='
+      on_slack_user_id: lambda do |uid|
+        { text: 'ru_shalm', url: '/@ru_shalm' } if uid == 'U12345'
+      end,
+      on_slack_channel_id: lambda do |uid|
+        { text: 'ru_shalm', url: 'http://toripota.com' } if uid == 'U12345'
+      end,
+      cushion_link: 'http://localhost/?url=',
     }
     processor = SlackMarkdown::Processor.new(context)
     processor.call(text)[:output].to_s
   end
 
   let :text do
-<<EOS
+    <<EOS
 <@U12345> <@U23456> *SlackMarkdown* is `text formatter` _gem_ .
 > :ru_shalm: is <http://toripota.com/img/ru_shalm.png>
 EOS

@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Ru/MuckRu']
   spec.email         = ['ru_shalm@hazimu.com']
 
-  spec.summary       = %q{Convert Slack message markdown to HTML.}
-  spec.description   = %q{Convert Slack message markdown to HTML.}
+  spec.summary       = 'Convert Slack message markdown to HTML.'
+  spec.description   = 'Convert Slack message markdown to HTML.'
   spec.homepage      = 'https://github.com/rutan/slack_markdown'
   spec.license       = 'MIT'
 
@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.2'
   spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'rubocop', '~> 0.40.0'
 end

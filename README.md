@@ -1,5 +1,7 @@
 # SlackMarkdown
 
+[![Build Status](https://travis-ci.org/rutan/slack_markdown.svg?branch=master)](https://travis-ci.org/rutan/slack_markdown)
+
 SlackMarkdown (https://api.slack.com/docs/formatting) to HTML converter.
 
 ## Installation

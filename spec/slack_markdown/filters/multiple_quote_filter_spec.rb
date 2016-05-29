@@ -9,7 +9,7 @@ describe SlackMarkdown::Filters::MultipleQuoteFilter do
 
   context '>>> hoge' do
     let(:text) { '&gt;&gt;&gt; hoge' }
-    it { should eq "<blockquote>hoge</blockquote>" }
+    it { should eq '<blockquote>hoge</blockquote>' }
   end
 
   context 'multiline' do

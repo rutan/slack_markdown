@@ -9,9 +9,19 @@ module SlackMarkdown
       include IgnorableAncestorTags
 
       def call
-        html = doc.to_s.gsub(/^&gt;\s*(.+)(?:\n|$)/) do
+        html = replace_quote_line(doc.to_s)
+        collect_blockquote(html)
+      end
+
+      private
+
+      def replace_quote_line(str)
+        str.gsub(/^&gt;\s*(.+)(?:\n|$)/) do
           "<blockquote>#{$1}\n</blockquote>"
         end
+      end
+
+      def collect_blockquote(html)
         doc = Nokogiri::HTML.fragment(html)
         doc.search('blockquote + blockquote').each do |node|
           next unless node.previous.name == 'blockquote'

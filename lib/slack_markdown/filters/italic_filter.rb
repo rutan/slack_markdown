@@ -9,7 +9,7 @@ module SlackMarkdown
       include IgnorableAncestorTags
 
       def call
-        doc.search(".//text()").each do |node|
+        doc.search('.//text()').each do |node|
           content = node.to_html
           next if has_ancestor?(node, ignored_ancestor_tags)
           next unless content.include?('_')

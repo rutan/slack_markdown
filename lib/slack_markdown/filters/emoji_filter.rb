@@ -5,7 +5,6 @@ require 'html/pipeline'
 module SlackMarkdown
   module Filters
     class EmojiFilter < ::HTML::Pipeline::EmojiFilter
-
       def emoji_url(name)
         emoji_names.include?(name) ? super : original_emoji_path(name)
       end

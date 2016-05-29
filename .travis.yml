@@ -1,0 +1,13 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3.0
+  - ruby-head
+before_install:
+  - gem install bundler
+script:
+  - bundle exec rubocop
+  - bundle exec rake
+
