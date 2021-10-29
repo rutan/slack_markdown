@@ -9,6 +9,7 @@ require 'slack_markdown/filters/code_filter'
 require 'slack_markdown/filters/emoji_filter'
 require 'slack_markdown/filters/bold_filter'
 require 'slack_markdown/filters/italic_filter'
+require 'slack_markdown/filters/strike_filter'
 require 'slack_markdown/filters/line_break_filter'
 
 module SlackMarkdown
@@ -28,6 +29,7 @@ module SlackMarkdown
         SlackMarkdown::Filters::EmojiFilter,
         SlackMarkdown::Filters::BoldFilter,
         SlackMarkdown::Filters::ItalicFilter,
+        SlackMarkdown::Filters::StrikeFilter,
         SlackMarkdown::Filters::LineBreakFilter,
       ]
     end
