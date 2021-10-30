@@ -24,6 +24,7 @@ module SlackMarkdown
           when /\A#(C.+)\z/ # channel
             channel = context.include?(:on_slack_channel_id) ? context[:on_slack_channel_id].call($1) : nil
             if channel
+              override_text = nil
               ['channel', channel[:url], "##{channel[:text]}"]
             else
               ['channel', data, data]

@@ -26,7 +26,13 @@ module SlackMarkdown
       end
 
       def original_emoji_path(name)
-        original_emoji_set[name]
+        path = original_emoji_set[name]
+
+        if (matches = path.match(/\Aalias:(.+)\z/))
+          emoji_url(matches[1])
+        else
+          path
+        end
       end
     end
   end
