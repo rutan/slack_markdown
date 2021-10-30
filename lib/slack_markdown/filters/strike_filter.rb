@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'html/pipeline'
 require 'slack_markdown/filters/ignorable_ancestor_tags'
@@ -13,8 +13,10 @@ module SlackMarkdown
           content = node.to_html
           next if has_ancestor?(node, ignored_ancestor_tags)
           next unless content.include?('~')
+
           html = strike_filter(content)
           next if html == content
+
           node.replace(html)
         end
         doc
@@ -22,11 +24,11 @@ module SlackMarkdown
 
       def strike_filter(text)
         text.gsub(STRIKE_PATTERN) do
-          "<strike>#{$1}</strike>"
+          "<strike>#{Regexp.last_match(1)}</strike>"
         end
       end
 
-      STRIKE_PATTERN = /(?<=^|\W)~(.+)~(?=\W|$)/
+      STRIKE_PATTERN = /(?<=^|\W)~(.+)~(?=\W|$)/.freeze
     end
   end
 end

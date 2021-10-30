@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'html/pipeline'
 require 'escape_utils'
@@ -8,9 +8,9 @@ module SlackMarkdown
     # https://api.slack.com/docs/formatting
     class ConvertFilter < ::HTML::Pipeline::TextFilter
       def call
-        html = @text.gsub(/<([^>\|]+)(?:\|([^>]+))?>/) do |_match|
-          link_data = $1
-          link_text = $2
+        html = @text.gsub(/<([^>|]+)(?:\|([^>]+))?>/) do |_match|
+          link_data = Regexp.last_match(1)
+          link_text = Regexp.last_match(2)
           create_link(link_data, link_text)
         end
         Nokogiri::HTML.fragment(html)
@@ -22,7 +22,7 @@ module SlackMarkdown
         klass, link, text =
           case data
           when /\A#(C.+)\z/ # channel
-            channel = context.include?(:on_slack_channel_id) ? context[:on_slack_channel_id].call($1) : nil
+            channel = context.include?(:on_slack_channel_id) ? context[:on_slack_channel_id].call(Regexp.last_match(1)) : nil
             if channel
               override_text = nil
               ['channel', channel[:url], "##{channel[:text]}"]
@@ -30,14 +30,14 @@ module SlackMarkdown
               ['channel', data, data]
             end
           when /\A@((?:U|B).+)/ # user or bot
-            user = context.include?(:on_slack_user_id) ? context[:on_slack_user_id].call($1) : nil
+            user = context.include?(:on_slack_user_id) ? context[:on_slack_user_id].call(Regexp.last_match(1)) : nil
             if user
               ['mention', user[:url], "@#{user[:text]}"]
             else
               ['mention', nil, data]
             end
           when /\A@(.+)/ # user name
-            user = context.include?(:on_slack_user_name) ? context[:on_slack_user_name].call($1) : nil
+            user = context.include?(:on_slack_user_name) ? context[:on_slack_user_name].call(Regexp.last_match(1)) : nil
             if user
               ['mention', user[:url], "@#{user[:text]}"]
             else

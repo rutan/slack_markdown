@@ -1,32 +1,16 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
-  Exclude:
-    - tmp/**/*
-    - vendor/**/*
+  NewCops: enable
 
-SpecialGlobalVars:
+Style/Documentation:
   Enabled: false
 
-AsciiComments:
-  Enabled: false
-
-ClassLength:
-  Max: 200
-
-Documentation:
-  Enabled: false
-
-LineLength:
-  Max: 137
+Layout/LineLength:
+  Max: 140
   Exclude:
     - spec/**/*
 
-MethodLength:
-  Max: 39
-
-PerlBackrefs:
-  Enabled: false
-
-TrailingCommaInLiteral:
-  EnforcedStyleForMultiline: comma
-
-inherit_from: .rubocop_todo.yml
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*

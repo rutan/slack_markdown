@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'html/pipeline'
 require 'slack_markdown/filters/ignorable_ancestor_tags'
@@ -13,8 +13,10 @@ module SlackMarkdown
           content = node.to_html
           next if has_ancestor?(node, ignored_ancestor_tags)
           next unless content.include?('&gt;&gt;&gt;')
+
           html = multiple_quote_filter(content)
           next if html == content
+
           node.replace(html)
         end
         doc
