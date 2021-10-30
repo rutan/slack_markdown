@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'html/pipeline'
 require 'slack_markdown/filters/convert_filter'
@@ -30,7 +30,7 @@ module SlackMarkdown
         SlackMarkdown::Filters::BoldFilter,
         SlackMarkdown::Filters::ItalicFilter,
         SlackMarkdown::Filters::StrikeFilter,
-        SlackMarkdown::Filters::LineBreakFilter,
+        SlackMarkdown::Filters::LineBreakFilter
       ]
     end
 
