@@ -8,7 +8,7 @@ describe SlackMarkdown::Filters::EmojiFilter do
       original_emoji_set: {
         'ru_shalm' => 'http://toripota.com/img/ru_shalm.png',
         'shalm' => 'alias:ru_shalm',
-        'happy' => 'alias:smile'
+        'happy' => 'alias:smile',
       },
     }
     filter = SlackMarkdown::Filters::EmojiFilter.new(text, context)

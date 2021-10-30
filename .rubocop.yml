@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 AllCops:
   Exclude:
     - tmp/**/*
@@ -20,13 +22,9 @@ LineLength:
   Exclude:
     - spec/**/*
 
-MethodLength:
-  Max: 39
-
 PerlBackrefs:
   Enabled: false
 
 TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
-inherit_from: .rubocop_todo.yml
