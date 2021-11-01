@@ -32,6 +32,7 @@ module SlackMarkdown
           when /\A@((?:U|B).+)/ # user or bot
             user = context.include?(:on_slack_user_id) ? context[:on_slack_user_id].call(Regexp.last_match(1)) : nil
             if user
+              override_text = nil
               ['mention', user[:url], "@#{user[:text]}"]
             else
               ['mention', nil, data]
@@ -39,6 +40,7 @@ module SlackMarkdown
           when /\A@(.+)/ # user name
             user = context.include?(:on_slack_user_name) ? context[:on_slack_user_name].call(Regexp.last_match(1)) : nil
             if user
+              override_text = nil
               ['mention', user[:url], "@#{user[:text]}"]
             else
               ['mention', nil, data]
